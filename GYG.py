@@ -5,7 +5,7 @@ from bs4 import BeautifulSoup
 import re
 from GoogleServices import delete_event, insert_spreadsheet, create_calendar, remove_spreadsheet_row, update_event_description
 from WAUtils import send_wa
-from URLUtils import shorten_url
+# from URLUtils import shorten_url
 from DateUtils import extract_date
 from TableUtils import gyg_text_to_row
 from TextUtils import parse_gyg_new_booking
@@ -122,8 +122,8 @@ def new_booking():
 
                 cleaned = sp.get_text(separator="\n", strip=True)
                 if google_maps_link:        
-                    short_url = shorten_url(google_maps_link['href'])        
-                    cleaned += "\n" + short_url
+                    # short_url = shorten_url(google_maps_link['href'])        
+                    cleaned += "\n" + google_maps_link
 
                 text = "*" + subject + "*" + "\n"
                 text += cleaned
@@ -186,8 +186,8 @@ def update_booking():
                         break
                 cleaned = sp.get_text(separator="\n", strip=True)
                 if google_maps_link:
-                    short_url = shorten_url(google_maps_link['href'])
-                    cleaned += "\n" + short_url
+                    # short_url = shorten_url(google_maps_link['href'])
+                    cleaned += "\n" + google_maps_link
 
                     text = "*" + subject + "*" + "\n"
                     text += cleaned
