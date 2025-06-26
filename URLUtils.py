@@ -1,7 +1,8 @@
 
-import pyshorteners
+import requests
+
+apiUrl="https://cleanuri.com/api/v1/shorten"
 
 def shorten_url(url):
-    s = pyshorteners.Shortener()
-    short = s.tinyurl.short(url)
-    return short
+    response = requests.post(apiUrl, data={"url": url})
+    return response.json()['result_url']
