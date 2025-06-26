@@ -121,9 +121,9 @@ def new_booking():
                 google_maps_link = sp.find('a', string='Open in Google Maps')
 
                 cleaned = sp.get_text(separator="\n", strip=True)
-                if google_maps_link:        
-                    # short_url = shorten_url(google_maps_link['href'])        
-                    cleaned += "\n" + google_maps_link
+                if google_maps_link and google_maps_link.has_attr('href'):
+                    maps_url = google_maps_link['href']
+                    cleaned += f"\n{maps_url}"
 
                 text = "*" + subject + "*" + "\n"
                 text += cleaned
@@ -185,9 +185,9 @@ def update_booking():
                         google_maps_link = link
                         break
                 cleaned = sp.get_text(separator="\n", strip=True)
-                if google_maps_link:
-                    # short_url = shorten_url(google_maps_link['href'])
-                    cleaned += "\n" + google_maps_link
+                if google_maps_link and google_maps_link.has_attr('href'):
+                    maps_url = google_maps_link['href']
+                    cleaned += f"\n{maps_url}"
 
                     text = "*" + subject + "*" + "\n"
                     text += cleaned
